@@ -13,13 +13,13 @@ const TypingTitle = (props: Props) => {
       onInit={(typewriter) => {
         typewriter
           .typeString("Capture ideas.")
-          .pauseFor(2000)
+          .pauseFor(1000)
           .deleteAll()
           .typeString("Organize thoughts.")
-          .pauseFor(2000)
+          .pauseFor(1000)
           .deleteAll()
           .typeString("Boost productivity.")
-          .pauseFor(2000)
+          .pauseFor(1000)
           .deleteAll()
           .start();
       }}

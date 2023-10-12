@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import TypingTitle from "./typing-title";
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const Heading = () => {
   return (
@@ -23,10 +24,14 @@ export const Heading = () => {
           <TypingTitle />
         </h2>
 
-        <Button className="bg-green-600 dark:bg-green-500">
-          Get Started
-          <ArrowRight className="ml-2 w-5 h-5" strokeWidth={3} />
-        </Button>
+        <div className="flex justify-center">
+          <Link href="/dashboard">
+            <Button className=" bg-green-600 dark:bg-green-500">
+              Get Started
+              <ArrowRight className="ml-2 w-5 h-5" strokeWidth={3} />
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
