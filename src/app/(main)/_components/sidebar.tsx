@@ -5,6 +5,7 @@ import { ChevronsLeft, ChevronsRight } from "lucide-react";
 
 import LogoutHelper from "./logout-helper";
 import IconButton from "./icon-button";
+import ActionItems from "./action-items";
 
 interface SidebarProps {
   showSidebar: boolean;
@@ -23,12 +24,11 @@ export const Sidebar = ({ showSidebar, setShowSidebar }: SidebarProps) => {
         {/* Toggle Button for Sidebar (Mobile) */}
         <IconButton
           onClick={() => setShowSidebar(!showSidebar)}
-          className={`z-100 fixed right-0 top-0 ml-auto md:hidden`}
+          className={`fixed right-0 top-0 z-10 ml-auto md:hidden`}
         >
           <ChevronsRight
             className={cn(
               "duration-400 h-6 w-6 text-black transition-transform dark:text-slate-100",
-              showSidebar ? "rotate-0" : "rotate-180",
             )}
           />
         </IconButton>
@@ -47,6 +47,7 @@ export const Sidebar = ({ showSidebar, setShowSidebar }: SidebarProps) => {
         </IconButton>
 
         <LogoutHelper />
+        {/* <ActionItems /> */}
       </aside>
     </>
   );

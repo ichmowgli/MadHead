@@ -22,8 +22,11 @@ export default function LogoutHelper() {
       {/* LogOut Section */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <div role="button" className="flex w-full items-center gap-4">
-            <div className="flex w-full items-center gap-x-2 p-3 text-sm hover:bg-primary/5 md:hover:rounded-t-xl">
+          <div
+            role="button"
+            className="flex w-full items-center gap-4 hover:bg-primary/5 md:hover:rounded-t-xl"
+          >
+            <div className="flex w-full items-center gap-x-2 p-3 text-sm">
               {user ? (
                 <Avatar className="h-5 w-5">
                   <AvatarImage src={user?.imageUrl} />
