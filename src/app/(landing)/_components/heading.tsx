@@ -10,9 +10,9 @@ export const Heading = () => {
   return (
     <div>
       <div className="max-w-3xl space-y-6">
-        <h1 className="font-semibold text-3xl sm:text-5xl md:text-6xl text-center">
+        <h1 className="text-center text-3xl font-semibold sm:text-5xl md:text-6xl">
           MadHead is your <br />
-          <span className="text-green-600 font-bold dark:text-green-500">
+          <span className="font-bold text-green-600 dark:text-green-500">
             note-taking
           </span>{" "}
           {""}
@@ -20,7 +20,7 @@ export const Heading = () => {
             assistant
           </span>
         </h1>
-        <h2 className="font-semibold text-xl sm:text-2xl md:text-3xl text-center">
+        <h2 className="text-center text-xl font-semibold sm:text-2xl md:text-3xl">
           <TypingTitle />
         </h2>
 
@@ -28,7 +28,7 @@ export const Heading = () => {
           <Link href="/dashboard">
             <Button className=" bg-green-600 dark:bg-green-500">
               Get Started
-              <ArrowRight className="ml-2 w-5 h-5" strokeWidth={3} />
+              <ArrowRight className="ml-2 h-5 w-5" strokeWidth={3} />
             </Button>
           </Link>
         </div>

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+
 import Typewriter from "typewriter-effect";
 
 type Props = {};
