@@ -8,8 +8,8 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="relative flex h-screen w-screen flex-row bg-background dark:bg-[#1f1f1f]">
-      {/* <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} /> */}
-      {children}
+      <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+      <main>{children}</main>
     </div>
   );
 };
