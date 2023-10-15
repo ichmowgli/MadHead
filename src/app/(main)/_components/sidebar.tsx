@@ -1,18 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, Plus } from "lucide-react";
 
 import LogoutHelper from "./logout-helper";
 import IconButton from "./icon-button";
 import ActionItems from "./action-items";
+import { Doer } from "./doer";
+import toast from "react-hot-toast";
+
+import { useRouter } from "next/navigation";
+import { NoteList } from "./notes-list";
 
 interface SidebarProps {
   showSidebar: boolean;
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  userId: string;
 }
 
-export const Sidebar = ({ showSidebar, setShowSidebar }: SidebarProps) => {
+export const Sidebar = ({
+  showSidebar,
+  setShowSidebar,
+  userId,
+}: SidebarProps) => {
+  const router = useRouter();
+
+  const handleCreate = () => {
+    const promise = fetch("/api/notes", {
+      method: "POST",
+      body: JSON.stringify({
+        title: "New page",
+        content: "1",
+        isPublished: false,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        router.push(`/notes/${data.data.id}`);
+      });
+
+    toast.promise(promise, {
+      loading: "Creating...",
+      success: "Created!",
+      error: "Error creating note",
+    });
+  };
+
   return (
     <>
       <aside
@@ -32,7 +68,6 @@ export const Sidebar = ({ showSidebar, setShowSidebar }: SidebarProps) => {
             )}
           />
         </IconButton>
-
         {/* Toggle Button for Sidebar (Desktop) */}
         <IconButton
           onClick={() => setShowSidebar(!showSidebar)}
@@ -45,9 +80,19 @@ export const Sidebar = ({ showSidebar, setShowSidebar }: SidebarProps) => {
             )}
           />
         </IconButton>
-
-        <LogoutHelper />
-        {/* <ActionItems /> */}
+        {/* Sidebar Content */}
+        <div>
+          <LogoutHelper />
+          <ActionItems />
+        </div>
+        <div className="mt-4">
+          <Doer
+            onClick={handleCreate}
+            icon={Plus}
+            label="Add a page"
+          />
+        </div>
+        <NoteList />
       </aside>
     </>
   );
