@@ -5,11 +5,9 @@ import { PlusCircle, Search, Settings } from "lucide-react";
 export default function ActionItems() {
   return (
     <>
-      {/* <Doer label="Search" icon={Search} isSearch  />
+      <Doer label="Search" icon={Search} isSearch />
       <Doer label="Settings" icon={Settings} />
-      <Doer  label="New page" icon={PlusCircle} />
-      */}
-      huj
+      <Doer label="New page" icon={PlusCircle} />
     </>
   );
 }

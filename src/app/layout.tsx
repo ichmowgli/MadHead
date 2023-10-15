@@ -1,3 +1,5 @@
+import toast, { Toaster } from "react-hot-toast";
+
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -43,6 +45,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="madhead-theme"
           >
+            <Toaster position="bottom-left" />
             {children}
           </ThemeProvider>
         </body>
