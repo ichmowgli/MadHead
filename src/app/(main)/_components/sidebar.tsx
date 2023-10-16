@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { cn } from '@/lib/utils';
 import {
@@ -31,11 +31,12 @@ export const Sidebar = ({
 }: SidebarProps) => {
   const router = useRouter();
 
+
   const handleCreate = () => {
     const promise = fetch('/api/notes', {
       method: 'POST',
       body: JSON.stringify({
-        title: 'New page',
+        title: 'New note',
         content: '1',
         isPublished: false,
       }),
@@ -91,12 +92,13 @@ export const Sidebar = ({
           <LogoutHelper />
           <Item label='Search' icon={Search} isSearch />
           <Item label='Settings' icon={Settings} />
-          <Item label='New page' icon={PlusCircle} />
         </div>
-        <div className='mt-4'>
-          <Item onClick={handleCreate} icon={Plus} label='Add a page' />
+        <div>
+          <div className='my-4'>
+            <Item onClick={handleCreate} icon={Plus} label='Add a note' />
+          </div>
+          <NoteList />
         </div>
-        <NoteList />
       </aside>
     </>
   );

@@ -18,13 +18,13 @@ export const NoteList = () => {
   }, []);
 
   if (notes === undefined) {
-    return <> No notes</>;
+    return null
   }
 
   return (
     <>
       {notes.map((note) => (
-          <Item  key={note.id} label={note.title} isSearch icon={FileIcon} />
+          <Item  key={note.id} label={note.title} icon={FileIcon} />
       ))}
     </>
   );
