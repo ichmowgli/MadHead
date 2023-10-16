@@ -7,7 +7,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useParams, useRouter } from 'next/navigation';
 import { useNoteStore } from '@/app/store';
 
-
 export const NoteList = () => {
   const router = useRouter();
   const params = useParams();
@@ -15,7 +14,7 @@ export const NoteList = () => {
 
   useEffect(() => {
     fetchNotes();
-  // trunk-ignore(eslint/react-hooks/exhaustive-deps)
+    // trunk-ignore(eslint/react-hooks/exhaustive-deps)
   }, []);
 
   const onRedirect = (noteId: number) => {
