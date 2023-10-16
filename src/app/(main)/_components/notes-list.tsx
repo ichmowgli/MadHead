@@ -14,7 +14,7 @@ export const NoteList = () => {
 
   useEffect(() => {
     fetchNotes();
-    // trunk-ignore(eslint/react-hooks/exhaustive-deps)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onRedirect = (noteId: number) => {
