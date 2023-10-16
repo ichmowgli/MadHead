@@ -4,7 +4,7 @@ import { Item } from './item';
 import { useEffect, useState } from 'react';
 import { notes } from '@prisma/client';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 const fetchNotes = async () => {
   return (await fetch('http://localhost:3000/api/notes')).json();
@@ -13,6 +13,7 @@ const fetchNotes = async () => {
 export const NoteList = () => {
   const [notes, setNotes] = useState<notes[]>([]);
   const router = useRouter();
+  const params = useParams();
 
   useEffect(() => {
     fetchNotes().then((data) => {
@@ -42,6 +43,7 @@ export const NoteList = () => {
           key={note.id}
           label={note.title}
           icon={FileIcon}
+          active={params.noteId === `${note.id}`}
         />
       ))}
     </>
