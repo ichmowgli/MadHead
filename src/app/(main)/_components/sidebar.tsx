@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ElementRef, useRef } from 'react';
 
 import { cn } from '@/lib/utils';
 import {
@@ -31,6 +31,7 @@ export const Sidebar = ({
 }: SidebarProps) => {
   const router = useRouter();
 
+  const sidebarRef = useRef<ElementRef<'aside'>>(null);
 
   const handleCreate = () => {
     const promise = fetch('/api/notes', {
@@ -38,7 +39,6 @@ export const Sidebar = ({
       body: JSON.stringify({
         title: 'New note',
         content: '1',
-        isPublished: false,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -59,6 +59,7 @@ export const Sidebar = ({
   return (
     <>
       <aside
+        ref={sidebarRef}
         className={cn(
           'z-500 absolute bottom-0 left-0 right-0 top-0 flex h-full flex-col gap-y-5 shadow-2xl shadow-slate-400 transition-transform duration-300 dark:bg-secondary dark:shadow-neutral-950 md:bottom-auto md:left-auto md:right-auto md:top-auto md:m-4 md:h-[calc(96%)] md:w-52 md:rounded-xl',
           showSidebar ? 'translate-x-0' : '-translate-x-full'
@@ -97,7 +98,9 @@ export const Sidebar = ({
           <div className='my-4'>
             <Item onClick={handleCreate} icon={Plus} label='Add a note' />
           </div>
-          <NoteList />
+          <div className='max-h-full overflow-y-scroll'>
+            <NoteList />
+          </div>
         </div>
       </aside>
     </>

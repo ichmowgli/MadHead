@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../db';
-import { notes } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs';
 import { z } from 'zod';
@@ -24,7 +23,6 @@ export const GET = async (req: NextApiRequest) => {
 const CreateNoteSchema = z.object({
   title: z.string().trim().min(1),
   content: z.string().trim().min(1),
-  isPublished: z.boolean().optional().default(false),
 });
 
 export const POST = async (req: Request) => {

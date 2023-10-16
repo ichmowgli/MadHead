@@ -24,7 +24,7 @@ const Error = () => {
       />
       <h2 className='text-xl font-medium'>Something went wrong!</h2>
       <Button asChild>
-        <Link href='/dashboard'>Go back</Link>
+        <Link href='/notes'>Go back</Link>
       </Button>
     </div>
   );

@@ -18,7 +18,7 @@ export const Navbar = () => {
   const { isSignedIn } = useUser();
 
   if (isSignedIn) {
-    redirect('/dashboard');
+    redirect('/notes');
   }
 
   return (
@@ -32,8 +32,8 @@ export const Navbar = () => {
       <div className='mx-2 flex w-full items-center justify-between gap-x-2 md:ml-auto md:justify-end'>
         <SignInButton
           mode='modal'
-          afterSignInUrl='/dashboard'
-          afterSignUpUrl='/dashboard'
+          afterSignInUrl='/notes'
+          afterSignUpUrl='/notes'
         >
           <Button variant='ghost' size='sm'>
             Log in

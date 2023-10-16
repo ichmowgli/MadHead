@@ -3,22 +3,26 @@
 import { useState } from 'react';
 import { Sidebar } from './_components/sidebar';
 import { useUser } from '@clerk/nextjs';
+import { Loader } from 'lucide-react';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [showSidebar, setShowSidebar] = useState(true);
 
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
 
-  if (!user) {
-    return <></>;
-  }
+  if (!isLoaded)
+    return (
+      <div className='flex h-full w-full items-center justify-center  '>
+        <Loader className='h-2 w-2 animate-spin md:h-4 md:w-4 lg:h-10 lg:w-10' />
+      </div>
+    );
 
   return (
     <div className='relative flex h-screen w-screen flex-row bg-background dark:bg-[#1f1f1f]'>
       <Sidebar
         showSidebar={showSidebar}
         setShowSidebar={setShowSidebar}
-        userId={user.id}
+        userId={user!.id}
       />
       <main className='h-full flex-1 overflow-y-auto'>{children}</main>
     </div>
