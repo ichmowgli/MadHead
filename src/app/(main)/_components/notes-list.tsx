@@ -1,10 +1,9 @@
 import { FileIcon } from 'lucide-react';
-
 import { Item } from './item';
-import { useEffect, useState } from 'react';
-import { notes } from '@prisma/client';
-import { Skeleton } from '@/components/ui/skeleton';
+
+import { useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+
 import { useNoteStore } from '@/app/store';
 
 export const NoteList = () => {
@@ -14,7 +13,7 @@ export const NoteList = () => {
 
   useEffect(() => {
     fetchNotes();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onRedirect = (noteId: number) => {

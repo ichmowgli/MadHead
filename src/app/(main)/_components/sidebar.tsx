@@ -1,11 +1,10 @@
-import React, { ElementRef, useRef } from 'react';
+import React from 'react';
 
 import { cn } from '@/lib/utils';
 import {
   ChevronsLeft,
   ChevronsRight,
   Plus,
-  PlusCircle,
   Search,
   Settings,
 } from 'lucide-react';
@@ -19,8 +18,7 @@ import { useRouter } from 'next/navigation';
 import { NoteList } from './notes-list';
 import { useNoteStore } from '@/app/store';
 
-import { useSearch } from "@/hooks/use-search";
-
+import { useSearch } from '@/hooks/use-search';
 
 interface SidebarProps {
   showSidebar: boolean;
@@ -87,7 +85,7 @@ export const Sidebar = ({
         {/* Sidebar Content */}
         <div>
           <LogoutHelper />
-          <Item label='Search' icon={Search} isSearch  onClick={search.onOpen} />
+          <Item label='Search' icon={Search} isSearch onClick={search.onOpen} />
           <Item label='Settings' icon={Settings} />
         </div>
         <div>

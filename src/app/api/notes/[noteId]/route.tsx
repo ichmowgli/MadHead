@@ -1,11 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../db';
-import { notes } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs';
-import { ListRestart } from 'lucide-react';
 import { z } from 'zod';
-import { stat } from 'fs';
 
 export const GET = async (
   req: Request,
