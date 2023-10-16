@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs';
 import { ListRestart } from 'lucide-react';
 import { z } from 'zod';
+import { stat } from 'fs';
 
 export const GET = async (
   req: Request,
@@ -33,7 +34,7 @@ export const DELETE = async (
   const { userId } = auth();
 
   if (!userId) {
-    return NextResponse.json({ data: [] });
+    return NextResponse.json({ code: 'UNAUTHORIZED' }, { status: 401 });
   }
 
   const data = await prisma.notes.delete({

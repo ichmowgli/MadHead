@@ -9,26 +9,20 @@ import { PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { useNoteStore } from '@/app/store';
 
 const DashboardPage = () => {
   const { user } = useUser();
   const router = useRouter();
+  const { addNote } = useNoteStore();
 
   const handleCreate = () => {
-    const promise = fetch('/api/notes', {
-      method: 'POST',
-      body: JSON.stringify({
-        title: 'New note',
-        content: '1',
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        router.push(`/notes/${data.data.id}`);
-      });
+    const promise = addNote({
+      title: 'New note',
+      content: '1',
+    }).then((note) => {
+      router.push(`/notes/${note.id}`);
+    });
 
     toast.promise(promise, {
       loading: 'Creating...',

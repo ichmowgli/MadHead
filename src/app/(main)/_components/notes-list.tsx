@@ -5,35 +5,22 @@ import { useEffect, useState } from 'react';
 import { notes } from '@prisma/client';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useParams, useRouter } from 'next/navigation';
+import { useNoteStore } from '@/app/store';
 
-const fetchNotes = async () => {
-  return (await fetch('http://localhost:3000/api/notes')).json();
-};
 
 export const NoteList = () => {
-  const [notes, setNotes] = useState<notes[]>([]);
   const router = useRouter();
   const params = useParams();
+  const { notes, fetchNotes } = useNoteStore();
 
   useEffect(() => {
-    fetchNotes().then((data) => {
-      setNotes(data.data);
-    });
+    fetchNotes();
+  // trunk-ignore(eslint/react-hooks/exhaustive-deps)
   }, []);
 
   const onRedirect = (noteId: number) => {
     router.push(`/notes/${noteId}`);
   };
-
-  if (notes === undefined) {
-    return (
-      <>
-        <Skeleton className='h-6 w-20' />
-        <Skeleton className='h-6 w-20' />
-        <Skeleton className='h-6 w-20' />
-      </>
-    );
-  }
 
   return (
     <>
