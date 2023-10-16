@@ -1,9 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../db";
-import { notes } from "@prisma/client";
-import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs";
-import { z } from "zod";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from '../db';
+import { notes } from '@prisma/client';
+import { NextResponse } from 'next/server';
+import { auth } from '@clerk/nextjs';
+import { z } from 'zod';
 
 export const GET = async (req: NextApiRequest) => {
   const { userId } = auth();
@@ -37,7 +37,7 @@ export const POST = async (req: Request) => {
   const body = CreateNoteSchema.safeParse(await req.json());
 
   if (body.success === false) {
-    return NextResponse.json({ code: "VALIDATION_ERROR" }, { status: 400 });
+    return NextResponse.json({ code: 'VALIDATION_ERROR' }, { status: 400 });
   }
 
   const data = await prisma.notes.create({

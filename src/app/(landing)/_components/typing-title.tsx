@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 
-import Typewriter from "typewriter-effect";
+import Typewriter from 'typewriter-effect';
 
 type Props = {};
 
@@ -13,13 +13,13 @@ const TypingTitle = (props: Props) => {
       }}
       onInit={(typewriter) => {
         typewriter
-          .typeString("Capture ideas.")
+          .typeString('Capture ideas.')
           .pauseFor(1000)
           .deleteAll()
-          .typeString("Organize thoughts.")
+          .typeString('Organize thoughts.')
           .pauseFor(1000)
           .deleteAll()
-          .typeString("Boost productivity.")
+          .typeString('Boost productivity.')
           .pauseFor(1000)
           .deleteAll()
           .start();

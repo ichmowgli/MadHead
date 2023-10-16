@@ -1,14 +1,14 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../db";
-import { notes } from "@prisma/client";
-import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs";
-import { ListRestart } from "lucide-react";
-import { z } from "zod";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from '../../db';
+import { notes } from '@prisma/client';
+import { NextResponse } from 'next/server';
+import { auth } from '@clerk/nextjs';
+import { ListRestart } from 'lucide-react';
+import { z } from 'zod';
 
 export const GET = async (
   req: Request,
-  { params: { noteId } }: { params: { noteId: string } },
+  { params: { noteId } }: { params: { noteId: string } }
 ) => {
   const { userId } = auth();
 
@@ -28,7 +28,7 @@ export const GET = async (
 
 export const DELETE = async (
   req: Request,
-  { params: { noteId } }: { params: { noteId: string } },
+  { params: { noteId } }: { params: { noteId: string } }
 ) => {
   const { userId } = auth();
 
@@ -54,7 +54,7 @@ const PatchNoteSchema = z.object({
 
 export const PATCH = async (
   req: Request,
-  { params: { noteId } }: { params: { noteId: string } },
+  { params: { noteId } }: { params: { noteId: string } }
 ) => {
   const { userId } = auth();
 
@@ -65,7 +65,7 @@ export const PATCH = async (
   const body = PatchNoteSchema.safeParse(await req.json());
 
   if (!body.success) {
-    return NextResponse.json({ code: "VALIDATION_ERROR" }, { status: 400 });
+    return NextResponse.json({ code: 'VALIDATION_ERROR' }, { status: 400 });
   }
 
   const data = await prisma.notes.update({

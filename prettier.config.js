@@ -1,4 +1,4 @@
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
-  plugins: ["prettier-plugin-tailwindcss"],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  plugins: ['prettier-plugin-tailwindcss'],
 };
