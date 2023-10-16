@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Sidebar } from './_components/sidebar';
 import { useUser } from '@clerk/nextjs';
 import { Loader } from 'lucide-react';
+import { SearchCommand } from '@/components/search-note';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -24,7 +25,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         setShowSidebar={setShowSidebar}
         userId={user!.id}
       />
-      <main className='h-full flex-1 overflow-y-auto'>{children}</main>
+      <main className='h-full flex-1 overflow-y-auto'>
+        <SearchCommand />
+
+        {children}
+      </main>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 interface ItemProps {
   id?: string;
-  documentIcon?: string;
+  noteIcon?: string;
   active?: boolean;
   expanded?: boolean;
   isSearch?: boolean;
@@ -22,7 +22,7 @@ export const Item = ({
   onClick,
   icon: Icon,
   active,
-  documentIcon,
+  noteIcon,
   isSearch,
 }: ItemProps) => {
   return (
@@ -34,16 +34,18 @@ export const Item = ({
         active && 'bg-primary/5 text-primary'
       )}
     >
-      {documentIcon ? (
-        <div className='mr-2 shrink-0 text-[18px]'>{documentIcon}</div>
+      {noteIcon ? (
+        <div className='mr-2 shrink-0 text-[18px]'>{noteIcon}</div>
       ) : (
         <Icon className='mr-2 h-[18px] w-[18px] shrink-0 text-muted-foreground' />
       )}
       <span className='truncate'>{label}</span>
       {isSearch && (
-        <kbd className='pointer-events-none ml-auto inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100'>
-          <span className='text-xs'>⌘</span>K
-        </kbd>
+        <>
+          <kbd className='pointer-events-none ml-auto inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1 text-[10px] font-medium text-muted-foreground'>
+            <span className='text-xs'>⌘</span>K
+          </kbd>
+        </>
       )}
     </div>
   );
