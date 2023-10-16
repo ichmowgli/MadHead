@@ -19,31 +19,30 @@ import { useNoteStore } from '@/app/store';
 export const SearchCommand = () => {
   const { user } = useUser();
   const router = useRouter();
-  const notes = useNoteStore((store) => store.notes);
+  const { notes } = useNoteStore();
 
-  const toggle = useSearch((store) => store.toggle);
-  const isOpen = useSearch((store) => store.isOpen);
-  const onClose = useSearch((store) => store.onClose);
+  const { toggleSearch, isSearchOpen, closeSearch } = useSearch();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        toggle();
+        toggleSearch();
       }
     };
 
     document.addEventListener('keydown', down);
     return () => document.removeEventListener('keydown', down);
-  }, [toggle]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSelect = (id: number) => {
     router.push(`/notes/${id}`);
-    onClose();
+    closeSearch();
   };
 
   return (
-    <CommandDialog open={isOpen} onOpenChange={onClose}>
+    <CommandDialog open={isSearchOpen} onOpenChange={closeSearch}>
       <CommandInput placeholder={`Search ${user?.fullName}'s MadHead...`} />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>

@@ -13,6 +13,7 @@ import LogoutHelper from './logout-helper';
 import IconButton from './icon-button';
 import { Item } from './item';
 import toast from 'react-hot-toast';
+import { Separator } from '@/components/ui/separator';
 
 import { useRouter } from 'next/navigation';
 import { NoteList } from './notes-list';
@@ -55,11 +56,10 @@ export const Sidebar = ({
     <>
       <aside
         className={cn(
-          'z-500 absolute bottom-0 left-0 right-0 top-0 flex h-full flex-col gap-y-5 shadow-2xl shadow-slate-400 transition-transform duration-300 dark:bg-secondary dark:shadow-neutral-950 md:bottom-auto md:left-auto md:right-auto md:top-auto md:m-4 md:h-[calc(96%)] md:w-52 md:rounded-xl',
+          'z-500 absolute bottom-0 left-0 right-0 top-0 flex h-full flex-col gap-y-5 shadow-2xl shadow-slate-400 transition-transform duration-300 dark:bg-secondary dark:shadow-neutral-950 md:bottom-auto md:left-auto md:right-auto md:top-auto md:m-4 md:h-[calc(96%)] md:w-52 md:rounded-xl ',
           showSidebar ? 'translate-x-0' : '-translate-x-full'
         )}
       >
-        {/* Toggle Button for Sidebar (Mobile) */}
         <IconButton
           onClick={() => setShowSidebar(!showSidebar)}
           className={`fixed right-0 top-0 z-10 ml-auto md:hidden`}
@@ -70,7 +70,7 @@ export const Sidebar = ({
             )}
           />
         </IconButton>
-        {/* Toggle Button for Sidebar (Desktop) */}
+
         <IconButton
           onClick={() => setShowSidebar(!showSidebar)}
           className='z-100 absolute -right-5 top-1/2 hidden md:block'
@@ -82,19 +82,23 @@ export const Sidebar = ({
             )}
           />
         </IconButton>
-        {/* Sidebar Content */}
+
         <div>
           <LogoutHelper />
-          <Item label='Search' icon={Search} isSearch onClick={search.onOpen} />
+          <Item
+            label='Search'
+            icon={Search}
+            isSearch
+            onClick={search.openSearch}
+          />
           <Item label='Settings' icon={Settings} />
         </div>
         <div>
-          <div className='my-4'>
-            <Item onClick={handleCreate} icon={Plus} label='Add a note' />
-          </div>
-          <div className='max-h-full overflow-y-scroll'>
-            <NoteList />
-          </div>
+          <Item onClick={handleCreate} icon={Plus} label='Add a note' />
+        </div>
+        <Separator className='mx-auto w-11/12 bg-muted-foreground' />
+        <div className='max-h-fit overflow-y-scroll'>
+          <NoteList />
         </div>
       </aside>
     </>
