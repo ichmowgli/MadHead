@@ -5,6 +5,7 @@ import { Sidebar } from './_components/sidebar';
 import { useUser } from '@clerk/nextjs';
 import { Loader } from 'lucide-react';
 import { SearchCommand } from '@/components/search-note';
+import { SettingsTheme } from '@/components/settings-theme';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -27,7 +28,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       />
       <main className='h-full flex-1 overflow-y-auto'>
         <SearchCommand />
-
+        <SettingsTheme />
         {children}
       </main>
     </div>

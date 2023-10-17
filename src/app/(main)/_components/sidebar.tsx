@@ -20,6 +20,7 @@ import { NoteList } from './notes-list';
 import { useNoteStore } from '@/app/store';
 
 import { useSearch } from '@/hooks/use-search';
+import { useSettings } from '@/hooks/use-settings';
 
 interface SidebarProps {
   showSidebar: boolean;
@@ -36,6 +37,7 @@ export const Sidebar = ({
   const { addNote } = useNoteStore();
 
   const search = useSearch();
+  const settings = useSettings();
 
   const handleCreate = () => {
     const promise = addNote({
@@ -91,7 +93,11 @@ export const Sidebar = ({
             isSearch
             onClick={search.openSearch}
           />
-          <Item label='Settings' icon={Settings} />
+          <Item
+            label='Settings'
+            icon={Settings}
+            onClick={settings.openSettings}
+          />
         </div>
         <div>
           <Item onClick={handleCreate} icon={Plus} label='Add a note' />
