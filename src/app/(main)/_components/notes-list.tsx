@@ -13,7 +13,6 @@ export const NoteList = () => {
 
   useEffect(() => {
     fetchNotes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onRedirect = (noteId: number) => {

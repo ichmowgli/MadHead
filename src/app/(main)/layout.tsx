@@ -1,15 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-import { Sidebar } from './_components/sidebar';
 import { useUser } from '@clerk/nextjs';
 import { Loader } from 'lucide-react';
 import { SearchCommand } from '@/components/search-note';
 import { SettingsTheme } from '@/components/settings-theme';
+import Sidebar from './_components/sidebar';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const [showSidebar, setShowSidebar] = useState(true);
-
   const { user, isLoaded } = useUser();
 
   if (!isLoaded)
@@ -21,11 +18,8 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className='relative flex h-screen w-screen flex-row bg-background dark:bg-[#1f1f1f]'>
-      <Sidebar
-        showSidebar={showSidebar}
-        setShowSidebar={setShowSidebar}
-        userId={user!.id}
-      />
+      <Sidebar userId={user!.id} />
+
       <main className='h-full flex-1 overflow-y-auto'>
         <SearchCommand />
         <SettingsTheme />

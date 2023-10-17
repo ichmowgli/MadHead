@@ -30,14 +30,14 @@ export const Item = ({
       onClick={onClick}
       role='button'
       className={cn(
-        'group flex min-h-[27px] w-full items-center px-3 py-1 text-sm font-medium text-muted-foreground hover:bg-primary/5',
+        'group flex w-full items-center px-3 py-1 text-sm font-medium text-muted-foreground hover:bg-primary/5',
         active && 'bg-primary/5 text-primary'
       )}
     >
       {noteIcon ? (
-        <div className='mr-2 shrink-0 text-[18px]'>{noteIcon}</div>
+        <div className='mr-2 shrink-0'>{noteIcon}</div>
       ) : (
-        <Icon className='mr-2 h-[18px] w-[18px] shrink-0 text-muted-foreground' />
+        <Icon className='mr-2 h-4 w-4 shrink-0 text-muted-foreground' />
       )}
       <span className='truncate'>{label}</span>
       {isSearch && (

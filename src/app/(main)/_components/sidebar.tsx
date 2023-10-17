@@ -1,39 +1,30 @@
-import React from 'react';
+'use client';
 
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import {
-  ChevronsLeft,
-  ChevronsRight,
-  Plus,
-  Search,
-  Settings,
-} from 'lucide-react';
-
+import { ChevronsLeft, MenuIcon, Plus, Search, Settings } from 'lucide-react';
 import LogoutHelper from './logout-helper';
-import IconButton from './icon-button';
 import { Item } from './item';
+import { useNoteStore } from '@/app/store';
 import toast from 'react-hot-toast';
+import { useSettings } from '@/hooks/use-settings';
+import { useSearch } from '@/hooks/use-search';
+import { NoteList } from './notes-list';
 import { Separator } from '@/components/ui/separator';
 
-import { useRouter } from 'next/navigation';
-import { NoteList } from './notes-list';
-import { useNoteStore } from '@/app/store';
-
-import { useSearch } from '@/hooks/use-search';
-import { useSettings } from '@/hooks/use-settings';
-
 interface SidebarProps {
-  showSidebar: boolean;
-  setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   userId: string;
 }
 
-export const Sidebar = ({
-  showSidebar,
-  setShowSidebar,
-  userId,
-}: SidebarProps) => {
+const Sidebar = ({ userId }: SidebarProps) => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const router = useRouter();
+
+  const handleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   const { addNote } = useNoteStore();
 
   const search = useSearch();
@@ -58,33 +49,17 @@ export const Sidebar = ({
     <>
       <aside
         className={cn(
-          'z-500 absolute bottom-0 left-0 right-0 top-0 flex h-full flex-col gap-y-5 shadow-2xl shadow-slate-400 transition-transform duration-300 dark:bg-secondary dark:shadow-neutral-950 md:bottom-auto md:left-auto md:right-auto md:top-auto md:m-4 md:h-[calc(96%)] md:w-52 md:rounded-xl ',
-          showSidebar ? 'translate-x-0' : '-translate-x-full'
+          'relative z-[1000] flex h-full flex-col gap-y-5 overflow-hidden overflow-y-auto bg-secondary pb-5 transition-all duration-300 ease-in-out',
+          isCollapsed ? 'w-0' : 'w-full md:w-60'
         )}
       >
-        <IconButton
-          onClick={() => setShowSidebar(!showSidebar)}
-          className={`fixed right-0 top-0 z-10 ml-auto md:hidden`}
+        <div
+          onClick={handleCollapse}
+          role='button'
+          className='absolute right-2 top-3 h-6 w-6 rounded-sm text-muted-foreground hover:bg-neutral-300 dark:hover:bg-neutral-600'
         >
-          <ChevronsRight
-            className={cn(
-              'duration-400 h-6 w-6 text-black transition-transform dark:text-slate-100'
-            )}
-          />
-        </IconButton>
-
-        <IconButton
-          onClick={() => setShowSidebar(!showSidebar)}
-          className='z-100 absolute -right-5 top-1/2 hidden md:block'
-        >
-          <ChevronsLeft
-            className={cn(
-              'duration-400 h-5 w-5 translate-x-1 text-black transition-transform dark:text-slate-100',
-              showSidebar ? '' : 'rotate-180'
-            )}
-          />
-        </IconButton>
-
+          <ChevronsLeft className='h-6 w-6' />
+        </div>
         <div>
           <LogoutHelper />
           <Item
@@ -107,6 +82,23 @@ export const Sidebar = ({
           <NoteList />
         </div>
       </aside>
+      <div
+        className={cn('absolute top-0 z-[999] w-full duration-0', {
+          hidden: !isCollapsed,
+        })}
+      >
+        {isCollapsed && (
+          <nav className='w-full bg-transparent px-3 py-2'>
+            <MenuIcon
+              onClick={handleCollapse}
+              role='button'
+              className='h-6 w-6 text-muted-foreground'
+            />
+          </nav>
+        )}
+      </div>
     </>
   );
 };
+
+export default Sidebar;
