@@ -49,7 +49,7 @@ const Sidebar = ({ userId }: SidebarProps) => {
     <>
       <aside
         className={cn(
-          'relative z-[1000] flex h-full flex-col gap-y-5 overflow-hidden overflow-y-auto bg-secondary pb-5 transition-all duration-300 ease-in-out',
+          'relative z-[50] flex h-full flex-col gap-y-5 overflow-hidden overflow-y-auto bg-secondary pb-5 transition-all duration-300 ease-in-out',
           isCollapsed ? 'w-0' : 'w-full md:w-60'
         )}
       >
