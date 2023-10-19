@@ -3,6 +3,7 @@
 import Editor from '@/app/(main)/_components/editor';
 import { useNoteStore } from '@/app/store';
 import { notes } from '@prisma/client';
+import { Loader } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
 export default function NotePage({
@@ -13,6 +14,9 @@ export default function NotePage({
   const id = Number(noteId);
 
   const { fetchNote, updateNote } = useNoteStore();
+
+  const [content, setContent] = useState<string>('');
+  const [editorText, setEditorText] = useState<string>('');
 
   const [note, setNote] = useState<notes | undefined>(undefined);
   const [title, setTitle] = useState<string>(note?.title ?? '');
@@ -36,7 +40,11 @@ export default function NotePage({
   const inputRef = useRef<HTMLInputElement>(null);
 
   if (!note) {
-    return <div>Loading...</div>;
+    return (
+      <div className='flex h-full w-full items-center justify-center  '>
+        <Loader className='h-2 w-2 animate-spin md:h-4 md:w-4 lg:h-10 lg:w-10' />
+      </div>
+    );
   }
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,12 +57,18 @@ export default function NotePage({
       <input
         id='title-input'
         ref={inputRef}
-        className='break-words p-12 text-left text-5xl font-bold text-[#3F3F3F] outline-none dark:text-[#CFCFCF]'
+        className='mt-12 break-words bg-transparent px-4 text-left text-2xl font-bold text-[#3F3F3F] outline-none out-of-range:text-red-500 dark:text-[#CFCFCF] md:px-12 md:text-3xl lg:text-5xl'
         value={title}
         onChange={onTitleChange}
+        placeholder='Title'
+        maxLength={19}
       />
-      <div className='border-3 border-red w-full p-6  md:max-w-3xl lg:max-w-4xl '>
-        <Editor />
+      <div className='w-full items-center justify-center p-2 px-4 md:max-w-3xl md:px-12 lg:max-w-6xl '>
+        <Editor
+          content={content}
+          setContent={setContent}
+          editorText={editorText}
+        />
       </div>
     </div>
   );
