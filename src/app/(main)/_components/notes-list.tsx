@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FileIcon } from 'lucide-react';
 import { Item } from './item';
 

@@ -13,7 +13,7 @@ export const GET = async (
     return NextResponse.json({ data: [] });
   }
 
-  const data = await prisma.notes.findMany({
+  const data = await prisma.notes.findFirst({
     where: {
       userId,
       id: Number(noteId),

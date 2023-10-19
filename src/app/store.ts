@@ -15,17 +15,14 @@ type NoteStore = {
   ) => Promise<DBNotes>;
   replaceOrAddToStore: (id: number, note: DBNotes) => void;
   removeNote: (id: number) => Promise<void>;
-  getById: (id: number, forceRefetch?: boolean) => Promise<DBNotes | undefined>;
+  getById: (id: number) => DBNotes | undefined;
 };
 
 export const useNoteStore = create<NoteStore>((set, get) => ({
   notes: [],
-  getById: (id: number, forceRefetch = false) => {
-    if (forceRefetch) {
-      return get().fetchNote(id);
-    }
+  getById: (id: number) => {
     const note = get().notes.find((n) => n.id === id);
-    return Promise.resolve(note);
+    return note;
   },
   fetchNotes: async () => {
     const res = await fetch('/api/notes');
@@ -64,16 +61,23 @@ export const useNoteStore = create<NoteStore>((set, get) => ({
     }
   },
   updateNote: async (id, note) => {
-    const res = await fetch(`/api/notes/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(note),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const { data: updatedNote } = await res.json();
-    get().replaceOrAddToStore(id, updatedNote);
-    return updatedNote;
+    const old = get().getById(id)!;
+    try {
+      get().replaceOrAddToStore(id, old);
+      const res = await fetch(`/api/notes/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(note),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const { data: updatedNote } = await res.json();
+      get().replaceOrAddToStore(id, updatedNote);
+      return updatedNote;
+    } catch (e) {
+      get().replaceOrAddToStore(id, old);
+      throw e;
+    }
   },
   removeNote: async (id) => {
     await fetch(`/api/notes/${id}`, {

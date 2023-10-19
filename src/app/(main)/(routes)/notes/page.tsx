@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ElementRef, useRef } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
 import { useUser } from '@clerk/nextjs';
