@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
-import { File } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/clerk-react';
+
+import { File } from 'lucide-react';
 
 import {
   CommandDialog,

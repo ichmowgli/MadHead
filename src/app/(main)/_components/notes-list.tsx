@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FileIcon } from 'lucide-react';
-import { Item } from './item';
-
 import { useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
 
+import { useParams, useRouter } from 'next/navigation';
 import { useNoteStore } from '@/app/store';
+
+import { Item } from './item';
+import { FileIcon } from 'lucide-react';
 
 export const NoteList = () => {
   const router = useRouter();

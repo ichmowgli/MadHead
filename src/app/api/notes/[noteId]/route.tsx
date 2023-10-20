@@ -1,6 +1,7 @@
-import { prisma } from '../../db';
-import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs';
+import { NextResponse } from 'next/server';
+
+import { prisma } from '../../db';
 import { z } from 'zod';
 
 export const GET = async (

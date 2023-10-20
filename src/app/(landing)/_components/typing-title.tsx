@@ -29,5 +29,3 @@ const TypingTitle = (props: Props) => {
 };
 
 export default TypingTitle;
-
-//Capture your ideas, organize your thoughts, and boost your productivity

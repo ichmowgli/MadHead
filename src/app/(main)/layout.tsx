@@ -1,10 +1,12 @@
 'use client';
 
 import { useUser } from '@clerk/nextjs';
-import { Loader } from 'lucide-react';
-import { SearchCommand } from '@/components/search-note';
-import { SettingsTheme } from '@/components/settings-theme';
+
 import Sidebar from './_components/sidebar';
+import { SettingsTheme } from '@/components/settings-theme';
+import { SearchCommand } from '@/components/search-note';
+
+import { Loader } from 'lucide-react';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { user, isLoaded } = useUser();

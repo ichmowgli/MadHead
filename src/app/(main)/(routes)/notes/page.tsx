@@ -3,14 +3,16 @@
 import React from 'react';
 import Image from 'next/image';
 
+import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 
-import { PlusCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { toast } from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
+
 import { useNoteStore } from '@/app/store';
 import { EMPTY_CONTENT } from '@/app/constants';
+
+import { Button } from '@/components/ui/button';
+import { PlusCircle } from 'lucide-react';
 
 const DashboardPage = () => {
   const { user } = useUser();

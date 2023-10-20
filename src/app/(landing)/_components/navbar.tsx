@@ -1,10 +1,10 @@
 'use client';
 
-import { useScrollTop } from '@/hooks/use-scroll-top';
-
 import { SignInButton } from '@clerk/clerk-react';
 import { useUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
+
+import { useScrollTop } from '@/hooks/use-scroll-top';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';

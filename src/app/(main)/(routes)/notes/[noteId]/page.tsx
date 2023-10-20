@@ -1,10 +1,11 @@
 'use client';
 
-import Editor from '@/app/(main)/_components/editor';
-import { useNoteStore } from '@/app/store';
-import { notes } from '@prisma/client';
-import { Loader } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
+import { notes } from '@prisma/client';
+import { useNoteStore } from '@/app/store';
+
+import Editor from '@/app/(main)/_components/editor';
+import { Loader } from 'lucide-react';
 
 export default function NotePage({
   params: { noteId },

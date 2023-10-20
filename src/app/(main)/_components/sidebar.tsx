@@ -2,15 +2,19 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import { ChevronsLeft, MenuIcon, Plus, Search, Settings } from 'lucide-react';
-import LogoutHelper from './logout-helper';
-import { Item } from './item';
+
 import { useNoteStore } from '@/app/store';
-import toast from 'react-hot-toast';
 import { useSettings } from '@/hooks/use-settings';
 import { useSearch } from '@/hooks/use-search';
+
+import toast from 'react-hot-toast';
+
+import { cn } from '@/lib/utils';
+import LogoutHelper from './logout-helper';
+import { Item } from './item';
 import { NoteList } from './notes-list';
+
+import { ChevronsLeft, MenuIcon, Plus, Search, Settings } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { EMPTY_CONTENT } from '@/app/constants';
 

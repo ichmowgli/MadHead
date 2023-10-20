@@ -1,10 +1,11 @@
 'use client';
 
-import { ArrowRight } from 'lucide-react';
-import TypingTitle from './typing-title';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import TypingTitle from './typing-title';
+
+import { ArrowRight } from 'lucide-react';
 
 export const Heading = () => {
   return (
