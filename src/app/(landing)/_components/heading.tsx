@@ -26,7 +26,7 @@ export const Heading = () => {
         </h2>
 
         <div className='flex justify-center'>
-          <Link href='/dashboard'>
+          <Link href='/notes'>
             <Button className=' bg-green-600 dark:bg-green-500'>
               Get Started
               <ArrowRight className='ml-2 h-5 w-5' strokeWidth={3} />
