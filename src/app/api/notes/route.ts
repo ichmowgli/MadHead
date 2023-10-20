@@ -1,11 +1,10 @@
 import { auth } from '@clerk/nextjs';
-import type { NextApiRequest } from 'next';
 import { NextResponse } from 'next/server';
 
 import { prisma } from '../db';
 import { z } from 'zod';
 
-export const GET = async (req: NextApiRequest) => {
+export const GET = async (req: Request) => {
   const { userId } = auth();
 
   if (!userId) {
