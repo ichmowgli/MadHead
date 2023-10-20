@@ -45,8 +45,8 @@ export const DELETE = async (
 };
 
 const PatchNoteSchema = z.object({
-  title: z.string(),
-  content: z.string(),
+  title: z.string().optional(),
+  content: z.string().optional(),
 });
 
 export const PATCH = async (

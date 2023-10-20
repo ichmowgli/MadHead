@@ -28,7 +28,7 @@ export default function NotePage({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onNoteUpdate = (title: string, content: string) => {
+  const onNoteUpdate = (title?: string, content?: string) => {
     updateNote(id, {
       title,
       content,
@@ -46,12 +46,12 @@ export default function NotePage({
   }
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onNoteUpdate(e.target.value, note.content!);
+    onNoteUpdate(e.target.value, undefined);
     setTitle(e.target.value);
   };
 
   const onContentChange = (json: string) => {
-    onNoteUpdate(note.title, json);
+    onNoteUpdate(undefined, json);
   };
 
   return (

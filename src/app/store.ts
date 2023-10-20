@@ -9,8 +9,8 @@ type NoteStore = {
   updateNote: (
     id: number,
     note: {
-      title: string;
-      content: string;
+      title?: string;
+      content?: string;
     }
   ) => Promise<DBNotes>;
   replaceOrAddToStore: (id: number, note: DBNotes) => void;

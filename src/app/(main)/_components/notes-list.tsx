@@ -24,9 +24,12 @@ export const NoteList = () => {
     <>
       {notes.map((note) => (
         <Item
+          id={note.id}
+          isNote={true}
           onClick={() => onRedirect(note.id)}
           key={note.id}
           label={note.title}
+          updatedAt={note.updatedAt as any as number}
           icon={FileIcon}
           active={params.noteId === `${note.id}`}
         />
