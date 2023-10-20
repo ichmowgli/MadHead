@@ -18,11 +18,7 @@ import { ChevronsLeft, MenuIcon, Plus, Search, Settings } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { EMPTY_CONTENT } from '@/app/constants';
 
-interface SidebarProps {
-  userId: string;
-}
-
-const Sidebar = ({ userId }: SidebarProps) => {
+const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const router = useRouter();
 

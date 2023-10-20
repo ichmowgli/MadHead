@@ -20,7 +20,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className='relative flex h-screen w-screen flex-row bg-background dark:bg-[#1f1f1f]'>
-      <Sidebar userId={user!.id} />
+      <Sidebar />
 
       <main className='h-full flex-1 overflow-y-auto'>
         <SearchCommand />

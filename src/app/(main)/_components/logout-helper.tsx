@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useUser, SignOutButton } from '@clerk/clerk-react';
+import { useRouter } from 'next/navigation';
 
 import { Skeleton } from '@/components/ui/skeleton';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
