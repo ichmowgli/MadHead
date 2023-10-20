@@ -12,6 +12,7 @@ import { useSettings } from '@/hooks/use-settings';
 import { useSearch } from '@/hooks/use-search';
 import { NoteList } from './notes-list';
 import { Separator } from '@/components/ui/separator';
+import { EMPTY_CONTENT } from '@/app/constants';
 
 interface SidebarProps {
   userId: string;
@@ -33,7 +34,7 @@ const Sidebar = ({ userId }: SidebarProps) => {
   const handleCreate = () => {
     const promise = addNote({
       title: 'New note',
-      content: '1',
+      content: EMPTY_CONTENT,
     }).then((note) => {
       router.push(`/notes/${note.id}`);
     });

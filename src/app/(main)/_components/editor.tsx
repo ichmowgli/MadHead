@@ -4,28 +4,14 @@ import './styles.css';
 import { Color } from '@tiptap/extension-color';
 import ListItem from '@tiptap/extension-list-item';
 import TextStyle from '@tiptap/extension-text-style';
-import Table from '@tiptap/extension-table';
-import TableCell from '@tiptap/extension-table-cell';
-import TableHeader from '@tiptap/extension-table-header';
-import TableRow from '@tiptap/extension-table-row';
 import Underline from '@tiptap/extension-underline';
-import Document from '@tiptap/extension-document';
-import Gapcursor from '@tiptap/extension-gapcursor';
-import Paragraph from '@tiptap/extension-paragraph';
-import Text from '@tiptap/extension-text';
 import Highlight from '@tiptap/extension-highlight';
 import TextAlign from '@tiptap/extension-text-align';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Icons } from '@/components/icons';
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarTrigger,
-} from '@/components/ui/menubar';
+import { Menubar, MenubarMenu, MenubarTrigger } from '@/components/ui/menubar';
 
 const MenuBarIcon = ({ editor }: any) => [
   {
@@ -295,12 +281,10 @@ function MenuBar({ editor }: any) {
 
 type TiptapProps = {
   content: string;
-  setContent: (content: string) => void;
-  editorText: string;
+  setContent: (json: string) => void;
 };
 
-function Tiptap(props: TiptapProps) {
-  const { editorText, content, setContent } = props;
+function Tiptap({ content, setContent }: TiptapProps) {
   const editor = useEditor({
     extensions: [
       Color.configure({ types: [TextStyle.name, ListItem.name] }),
@@ -315,16 +299,6 @@ function Tiptap(props: TiptapProps) {
         },
       }),
       Highlight,
-      Document,
-      Paragraph,
-      Text,
-      Gapcursor,
-      Table.configure({
-        resizable: true,
-      }),
-      TableRow,
-      TableHeader,
-      TableCell,
     ],
     editorProps: {
       attributes: {
@@ -332,22 +306,11 @@ function Tiptap(props: TiptapProps) {
       },
     },
     content,
+    onUpdate: ({ editor }) => {
+      const json = editor.getJSON();
+      setContent(JSON.stringify(json));
+    },
   });
-
-  useEffect(() => {
-    if (editor && editorText) {
-      editor
-        .chain()
-        .focus()
-        .insertContent(editorText)
-        .insertContent(`<br />`)
-        .run();
-    }
-  }, [editorText, editor]);
-
-  useEffect(() => {
-    editor?.chain().focus().insertContent(content).run();
-  }, [content, editor]);
 
   return (
     <div className='w-full rounded-2xl border-4 border-muted-foreground dark:border-background'>

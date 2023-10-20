@@ -15,9 +15,6 @@ export default function NotePage({
 
   const { fetchNote, updateNote } = useNoteStore();
 
-  const [content, setContent] = useState<string>('');
-  const [editorText, setEditorText] = useState<string>('');
-
   const [note, setNote] = useState<notes | undefined>(undefined);
   const [title, setTitle] = useState<string>(note?.title ?? '');
 
@@ -52,6 +49,10 @@ export default function NotePage({
     setTitle(e.target.value);
   };
 
+  const onContentChange = (json: string) => {
+    onNoteUpdate(note.title, json);
+  };
+
   return (
     <div className='flex h-full flex-col space-y-4'>
       <input
@@ -65,9 +66,8 @@ export default function NotePage({
       />
       <div className='w-full items-center justify-center p-2 px-4 md:max-w-3xl md:px-12 lg:max-w-6xl '>
         <Editor
-          content={content}
-          setContent={setContent}
-          editorText={editorText}
+          content={JSON.parse(note.content!)}
+          setContent={onContentChange}
         />
       </div>
     </div>

@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useNoteStore } from '@/app/store';
+import { EMPTY_CONTENT } from '@/app/constants';
 
 const DashboardPage = () => {
   const { user } = useUser();
@@ -19,7 +20,7 @@ const DashboardPage = () => {
   const handleCreate = () => {
     const promise = addNote({
       title: 'New note',
-      content: '1',
+      content: EMPTY_CONTENT,
     }).then((note) => {
       router.push(`/notes/${note.id}`);
     });
