@@ -43,13 +43,17 @@ const DashboardPage = () => {
           width='300'
           alt='Create New Note'
           className='dark:hidden'
+          rel='preload'
+          loading='eager'
         />
         <Image
-          src='/new_note-dark.svg'
+          src='/new_note-dark.png'
           height='300'
           width='300'
           alt='Create New Note'
           className='hidden dark:block'
+          rel='preload'
+          loading='eager'
         />
         <h2 className='text-lg font-medium'>
           Welcome to {user?.firstName}&apos;s MadHead
