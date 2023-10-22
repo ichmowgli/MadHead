@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier:fix": "prettier --write --ignore-path .gitignore ."
+    "prettier:fix": "prettier --write --ignore-path .gitignore .",
+    "migstart": "npx prisma db push && next start"
   },
   "dependencies": {
     "@blocknote/core": "^0.9.5",

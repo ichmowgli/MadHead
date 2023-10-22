@@ -5,8 +5,8 @@ Note-taking app for anyone who wants capture ideas, organize thoughts, and boost
 ## Features
 
 - Real-time database 🚀
-- Editor 📝 
-- Light and dark mode 💡 
+- Editor 📝
+- Light and dark mode 💡
 - Authentication 🔏
 - Full mobile responsiveness 📺
 
@@ -36,7 +36,7 @@ Note-taking app for anyone who wants capture ideas, organize thoughts, and boost
   npm run start
 ```
 
-  5. Open http://localhost:3000 in your browser.
+5. Open http://localhost:3000 in your browser.
 
 ## Environment Variables
 
@@ -58,7 +58,7 @@ To run this project, you will need to add the following environment variables to
 
 ### Setup Prisma
 
-Add SQLite Database 
+Add SQLite Database
 
 ```shell
 npx prisma db push
