@@ -6,6 +6,8 @@ import { useNoteStore } from '@/app/store';
 
 import Editor from '@/app/(main)/_components/editor';
 import { Loader } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export default function NotePage({
   params: { noteId },
@@ -55,22 +57,29 @@ export default function NotePage({
   };
 
   return (
-    <div className='flex h-full flex-col space-y-4'>
-      <input
-        id='title-input'
-        ref={inputRef}
-        className='mt-12 break-words bg-transparent px-4 text-left text-2xl font-bold text-[#3F3F3F] outline-none out-of-range:text-red-500 dark:text-[#CFCFCF] md:px-12 md:text-3xl lg:text-5xl'
-        value={title}
-        onChange={onTitleChange}
-        placeholder='Title'
-        maxLength={19}
-      />
-      <div className='w-full items-center justify-center p-2 px-4 md:max-w-3xl md:px-12 lg:max-w-6xl '>
-        <Editor
-          content={JSON.parse(note.content!)}
-          setContent={onContentChange}
+    <>
+      <div className='flex h-full flex-col space-y-4'>
+        <Button className='mx-4 mt-12 w-fit md:mx-12' variant='primary'>
+          <Link href='/notes' className='text-white'>
+            Go to Notes
+          </Link>
+        </Button>
+        <input
+          id='title-input'
+          ref={inputRef}
+          className='mt-12 break-words bg-transparent px-4 text-left text-2xl font-bold text-[#3F3F3F] outline-none out-of-range:text-red-500 dark:text-[#CFCFCF] md:px-12 md:text-3xl lg:text-5xl'
+          value={title}
+          onChange={onTitleChange}
+          placeholder='Title'
+          maxLength={19}
         />
+        <div className='w-full items-center justify-center p-2 px-4 md:max-w-3xl md:px-12 lg:max-w-6xl '>
+          <Editor
+            content={JSON.parse(note.content!)}
+            setContent={onContentChange}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
