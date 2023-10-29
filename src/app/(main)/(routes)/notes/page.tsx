@@ -68,7 +68,7 @@ const DashboardPage = () => {
 
   return (
     <>
-      <div className='flex h-full flex-col gap-y-4 px-4 pt-12 md:px-12 '>
+      <div className='flex h-full flex-col gap-y-8 px-4 pt-12 md:px-12 '>
         <h2 className='break-words text-left text-2xl font-bold text-[#3F3F3F] dark:text-[#CFCFCF] md:text-3xl lg:text-5xl'>
           Your Notes
         </h2>

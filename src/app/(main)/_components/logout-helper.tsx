@@ -35,7 +35,7 @@ export default function LogoutHelper() {
               )}
               <div className='flex flex-col'>
                 {user ? (
-                  <p className='whitespace-nowrap text-start font-medium'>
+                  <p className='whitespace-nowrap text-start font-medium text-[#3F3F3F] dark:text-[#CFCFCF]'>
                     Your Profile
                   </p>
                 ) : (
