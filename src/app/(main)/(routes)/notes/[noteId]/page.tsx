@@ -8,6 +8,7 @@ import Editor from '@/app/(main)/_components/editor';
 import { Loader } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import router from 'next/router';
 
 export default function NotePage({
   params: { noteId },
