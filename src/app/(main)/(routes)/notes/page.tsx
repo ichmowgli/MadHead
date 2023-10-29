@@ -76,14 +76,13 @@ const DashboardPage = () => {
         <div className='grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-5'>
           {notes.map((note) => (
             <a href={`/notes/${note.id}`} key={note.id}>
-              <div className='flex flex-col overflow-hidden rounded-lg border border-muted-foreground bg-secondary transition hover:-translate-y-1 hover:shadow-xl'>
+              <div className='flex flex-col overflow-hidden rounded-lg border bg-secondary transition hover:-translate-y-1 hover:shadow-xl'>
                 <div className='p-4'>
                   <h3 className='truncate text-xl font-semibold text-[#3F3F3F] dark:text-[#CFCFCF]'>
                     {note.title}
                   </h3>
                   <div className='h-1'></div>
                   <p className='text-sm text-gray-500'>
-                    Updated at: <br />
                     {new Date(note.updatedAt).toLocaleDateString()}
                   </p>
                 </div>
