@@ -59,10 +59,11 @@ export default function LogoutHelper() {
             </p>
           </div>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className='w-full cursor-pointer text-muted-foreground'>
-            <button onClick={() => signOut(() => router.push('/'))}>
-              Log out
-            </button>
+          <DropdownMenuItem
+            className='w-full cursor-pointer text-muted-foreground'
+            onSelect={() => signOut(() => router.push('/'))}
+          >
+            Log out
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
