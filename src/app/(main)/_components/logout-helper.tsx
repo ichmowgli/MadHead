@@ -12,10 +12,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useClerk } from '@clerk/nextjs';
 
 export default function LogoutHelper() {
   const { user } = useUser();
   const router = useRouter();
+  const { signOut } = useClerk();
 
   return (
     <>
@@ -58,9 +60,9 @@ export default function LogoutHelper() {
           </div>
           <DropdownMenuSeparator />
           <DropdownMenuItem className='w-full cursor-pointer text-muted-foreground'>
-            <SignOutButton signOutCallback={() => router.push('/')}>
+            <button onClick={() => signOut(() => router.push('/'))}>
               Log out
-            </SignOutButton>
+            </button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
