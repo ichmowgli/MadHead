@@ -18,9 +18,7 @@ interface TrashModalProps {
   onConfirm: () => void;
 }
 
-export const TrashModal = ({ children, onConfirm }:
-    TrashModalProps
-    ) => {
+export const TrashModal = ({ children, onConfirm }: TrashModalProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger onClick={(e) => e.stopPropagation()} asChild>

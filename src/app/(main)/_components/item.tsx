@@ -102,7 +102,7 @@ export const Item = ({
                 <TrashModal onConfirm={() => handleDelete()}>
                   <div
                     role='button'
-                    className='rounded-sm p-2 flex items-center gap-x-2'
+                    className='flex items-center justify-center gap-x-2 rounded-sm p-2'
                   >
                     <Trash className='mr-2 h-4 w-4' />
                     <p>Delete</p>
