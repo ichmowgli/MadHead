@@ -13,6 +13,7 @@ import {
 import { useNoteStore } from '@/app/store';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { TrashModal } from '@/components/providers/trash-modal';
 
 interface ItemProps {
   id?: number;
@@ -97,9 +98,16 @@ export const Item = ({
               side='right'
               forceMount
             >
-              <DropdownMenuItem onClick={() => handleDelete()}>
-                <Trash className='mr-2 h-4 w-4' />
-                Delete
+              <DropdownMenuItem>
+                <TrashModal onConfirm={() => handleDelete()}>
+                  <div
+                    role='button'
+                    className='rounded-sm p-2 flex items-center gap-x-2'
+                  >
+                    <Trash className='mr-2 h-4 w-4' />
+                    <p>Delete</p>
+                  </div>
+                </TrashModal>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <div className='p-2 text-xs text-muted-foreground'>
